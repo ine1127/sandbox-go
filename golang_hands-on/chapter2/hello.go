@@ -15,6 +15,11 @@ func main() {
     return
   }
 
-  p := float64(n)
-  fmt.Println(int(p * 1.1))
+  fmt.Print(x + "は、")
+
+  if n % 2 == 0 {
+    fmt.Println("偶数です。")
+  } else {
+    fmt.Println("奇数です。")
+  }
 }
