@@ -2,25 +2,24 @@ package main
 
 import (
   "fmt"
-//  "hello/hello"
-//  "strconv"
+  "hello/hello"
+  "strconv"
 )
 
 func main() {
-  x := 5
-  switch x {
-  case f(1):
-    fmt.Println("* first case. *")
-  case f(2):
-    fmt.Println("* sencond case. *")
-  case f(3):
-    fmt.Println("* third case. *")
-  default:
-    fmt.Println("* default case. *")
-  }
-}
+  x := hello.Input("type a number")
+  n, err := strconv.Atoi(x)
 
-func f(n int) int {
-  fmt.Println("No,", n)
-  return n
+  if err == nil {
+    fmt.Print(x + "は、")
+  } else {
+    return
+  }
+
+  switch {
+  case n % 2 == 0:
+    fmt.Println("偶数です。")
+  case n % 2 == 1:
+    fmt.Println("奇数です。")
+  }
 }
