@@ -16,11 +16,9 @@ func main() {
     return
   }
   t := 0
-  c := 1
 
-  for c <= n {
-    t += c
-    c++
+  for i := 1; i <= n; i++ {
+    t += i
   }
 
   fmt.Println(t, "です。")
