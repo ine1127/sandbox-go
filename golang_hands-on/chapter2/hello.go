@@ -4,19 +4,21 @@ import (
   "fmt"
   "hello/hello"
   "strconv"
+  "strings"
 )
 
 func main() {
+  x := hello.Input("Input data")
+  ar := strings.Split(x, " ")
   t := 0
-  x := hello.Input("type a number")
-  n, err := strconv.Atoi(x)
 
-  if err != nil {
-    goto err
-  }
+  for i := 0; i < len(ar); i++ {
+    n, er := strconv.Atoi(ar[i])
 
-  for i := 1; i <= n; i++ {
-    t += i
+    if er != nil {
+      goto err
+    }
+    t += n
   }
 
   fmt.Println("total:", t)
