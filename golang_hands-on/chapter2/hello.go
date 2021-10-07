@@ -8,16 +8,16 @@ import (
 )
 
 func main() {
-  a := [5]int{10, 20, 30, 40, 50}
-  b := a[0:3]
+  a := [3]int{10, 20, 30}
+  b := a[0:2]
   fmt.Println(a)
   fmt.Println(b)
 
-  a[0] = 100
+  b = append(b, 1000)
   fmt.Println(a)
   fmt.Println(b)
 
-  b[1] = 200
+  b = append(b, 1000)
   fmt.Println(a)
   fmt.Println(b)
 }
