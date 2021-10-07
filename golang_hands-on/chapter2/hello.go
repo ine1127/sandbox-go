@@ -12,4 +12,12 @@ func main() {
   b := a[0:3]
   fmt.Println(a)
   fmt.Println(b)
+
+  a[0] = 100
+  fmt.Println(a)
+  fmt.Println(b)
+
+  b[1] = 200
+  fmt.Println(a)
+  fmt.Println(b)
 }
