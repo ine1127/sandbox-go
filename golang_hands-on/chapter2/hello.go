@@ -8,13 +8,20 @@ import (
 )
 
 func main() {
-  m := map[string]int{
-    "a": 100,
-    "b": 200,
-    "c": 300,
-  }
+  m := []string{}
+  m, _ = push(m, "apple")
+  m, _ = push(m, "banana")
+  m, _ = push(m, "orange")
 
-  for k, v := range m {
-    fmt.Println(k + ":", v)
-  }
+  fmt.Println(m)
+  m, v := pop(m)
+  fmt.Println("get " + v + " ->", m)
+}
+
+func push(a []string, v string) ([]string, int) {
+  return append(a, v), len(a)
+}
+
+func pop(a []string) ([]string, string) {
+  return a[:len(a)-1], a[len(a)-1]
 }
