@@ -8,20 +8,19 @@ import (
 )
 
 func main() {
-  m := []string{}
-  m, _ = push(m, "apple")
-  m, _ = push(m, "banana")
-  m, _ = push(m, "orange")
+  m := []string{
+    "one", "two", "three",
+  }
 
   fmt.Println(m)
-  m, v := pop(m)
-  fmt.Println("get " + v + " ->", m)
+  m = insert(m, "*", 2)
+  m = insert(m, "*", 1)
+  fmt.Println(m)
 }
 
-func push(a []string, v string) ([]string, int) {
-  return append(a, v), len(a)
-}
-
-func pop(a []string) ([]string, string) {
-  return a[:len(a)-1], a[len(a)-1]
+func insert(a []string, v string, p int) (s []string) {
+  s = append(a, "")
+  s = append(s[:p+1], s[p:len(s)-1]...)
+  s[p] = v
+  return
 }
