@@ -8,27 +8,21 @@ import (
 )
 
 func main() {
-  modify := func(a []string, f func([]string) []string) []string {
-    return f(a)
-  }
+  data := "*新しい値"
+  m1 := modify(data)
+  data = "+new data+"
+  m2 := modify(data)
 
+  fmt.Println(m1())
+  fmt.Println(m2())
+}
+
+func modify(d string) func() []string {
   m := []string {
-    "1st", "2nd", "3rd",
+    "1st", "2nd",
   }
-  fmt.Println(m)
 
-  m1 := modify(m, func([]string) []string {
-    return append(m, m...)
-  })
-  fmt.Println(m1)
-
-  m2 := modify(m, func([]string) []string {
-    return m[:len(m)-1]
-  })
-  fmt.Println(m2)
-
-  m3 := modify(m, func([]string) []string {
-    return m[1:]
-  })
-  fmt.Println(m3)
+  return func() []string {
+    return append(m, d)
+  }
 }
