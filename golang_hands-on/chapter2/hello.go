@@ -8,19 +8,27 @@ import (
 )
 
 func main() {
-  f := func(a []string) ([]string, string) {
-    return a[1:], a[0]
+  modify := func(a []string, f func([]string) []string) []string {
+    return f(a)
   }
 
-  m := []string{
-    "one", "two", "three",
+  m := []string {
+    "1st", "2nd", "3rd",
   }
-
-  s := ""
   fmt.Println(m)
 
-  for len(m) > 0 {
-    m, s = f(m)
-    fmt.Println(s + " ->", m)
-  }
+  m1 := modify(m, func([]string) []string {
+    return append(m, m...)
+  })
+  fmt.Println(m1)
+
+  m2 := modify(m, func([]string) []string {
+    return m[:len(m)-1]
+  })
+  fmt.Println(m2)
+
+  m3 := modify(m, func([]string) []string {
+    return m[1:]
+  })
+  fmt.Println(m3)
 }
