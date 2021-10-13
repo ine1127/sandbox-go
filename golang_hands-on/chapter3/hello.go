@@ -5,20 +5,17 @@ import (
 )
 
 func main () {
-  n := 123
-  fmt.Printf("value:%d.\n", n)
+  ar := []int{10, 20, 30}
 
-  change1(n)
-  fmt.Printf("value:%d.\n", n)
+  fmt.Println(ar)
 
-  change2(&n)
-  fmt.Printf("value:%d.\n", n)
+  initial(&ar)
+
+  fmt.Println(ar)
 }
 
-func change1(n int) {
-  n *= 2
-}
-
-func change2(n *int) {
-  *n *= 2
+func initial(ar *[]int) {
+  for i := 0; i < len(*ar); i++ {
+    (*ar)[i] = 0
+  }
 }
