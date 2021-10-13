@@ -6,17 +6,19 @@ import (
 
 func main () {
   n := 123
-  p := &n
-  q := &p
-  m := 10000
-  p2 := &m
-  q2 := &p2
-  fmt.Printf("q  value:%d, address:%p\n", **q, *q)
-  fmt.Printf("q2 value:%d, address:%p\n", **q2, q2)
+  fmt.Printf("value:%d.\n", n)
 
-  pb := p
-  p = p2
-  p2 = pb
-  fmt.Printf("q  value:%d, address:%p\n", **q, *q)
-  fmt.Printf("q2 value:%d, address:%p\n", **q2, q2)
+  change1(n)
+  fmt.Printf("value:%d.\n", n)
+
+  change2(&n)
+  fmt.Printf("value:%d.\n", n)
+}
+
+func change1(n int) {
+  n *= 2
+}
+
+func change2(n *int) {
+  *n *= 2
 }
