@@ -17,17 +17,16 @@ func main () {
   }
 
   fmt.Println(taro)
-  taro = rev(taro)
+  rev(&taro)
   fmt.Println(taro)
 }
 
-func rev(md Mydata) Mydata {
-  od := md.Data
+func rev(md *Mydata) {
+  od := (*md).Data
   nd := []int{}
 
   for i := len(od) - 1; i >= 0; i-- {
     nd = append(nd, od[i])
   }
   md.Data = nd
-  return md
 }
