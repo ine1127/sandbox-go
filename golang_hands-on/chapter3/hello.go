@@ -10,11 +10,17 @@ type Mydata struct {
   Data []int
 }
 
-func main () {
-  taro := new(Mydata)
-  fmt.Println(taro)
+// PrintData is println all data.
+func (md Mydata) PrintData() {
+  fmt.Println("*** Mydata ***")
+  fmt.Println("Name: ", md.Name)
+  fmt.Println("Data: ", md.Data)
+  fmt.Println("*** end ***")
+}
 
-  taro.Name = "Taro"
-  taro.Data = make([]int, 5, 5)
-  fmt.Println(taro)
+func main () {
+  hanako := Mydata{
+            "Hanako", []int{98, 76, 54, 32, 10},
+  }
+  hanako.PrintData()
 }
