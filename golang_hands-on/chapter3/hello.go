@@ -40,13 +40,21 @@ func (num intp) PrimeFactor() []int {
   return ar
 }
 
+func (num *intp) doPrime() {
+  pf := num.PrimeFactor()
+  *num = intp(pf[len(pf)-1])
+}
+
 func main () {
   s := hello.Input("type a number")
   n, _ := strconv.Atoi(s)
   x := intp(n)
   fmt.Printf("%d [%t].\n", x, x.IsPrime())
   fmt.Println(x.PrimeFactor())
-  x *= 2
+  x.doPrime()
+
+  fmt.Printf("%d [%t].\n", x, x.IsPrime())
+  fmt.Println(x.PrimeFactor())
   x++
 
   fmt.Printf("%d [%t].\n", x, x.IsPrime())
