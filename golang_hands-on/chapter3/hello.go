@@ -8,6 +8,7 @@ import (
 type Data interface {
   Initial(name string, data []int)
   PrintData()
+  Check()
 }
 
 // Mydata is Struct.
@@ -34,7 +35,7 @@ func (md *Mydata) Check() {
 }
 
 func main() {
-  var ob Mydata = Mydata{}
+  var ob Data = new(Mydata)
   ob.Initial("Sachiko", []int{55, 66, 77})
   ob.Check()
 }
