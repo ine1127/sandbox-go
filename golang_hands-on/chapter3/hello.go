@@ -29,7 +29,7 @@ func (md *Mydata) PrintData() {
 }
 
 func main() {
-  var ob Mydata = Mydata{}
+  var ob Data = new(Mydata)
   ob.Initial("Sachiko", []int{55, 66, 77})
   ob.PrintData()
 }
