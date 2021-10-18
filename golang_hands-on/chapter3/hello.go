@@ -28,8 +28,13 @@ func (md *Mydata) PrintData() {
   fmt.Println("Data: ", md.Data)
 }
 
+// Check is method.
+func (md *Mydata) Check() {
+  fmt.Printf("Check! [%s]\n", md.Name)
+}
+
 func main() {
-  var ob Data = new(Mydata)
+  var ob Mydata = Mydata{}
   ob.Initial("Sachiko", []int{55, 66, 77})
-  ob.PrintData()
+  ob.Check()
 }
