@@ -33,8 +33,12 @@ func (md *Mydata) SetValue(vals map[string]string) {
 
 // PrintData is Mydata method.
 func (md *Mydata) PrintData() {
-  fmt.Println("Name: ", md.Name)
-  fmt.Println("Data: ", md.Data)
+  if md != nil {
+    fmt.Println("Name: ", md.Name)
+    fmt.Println("Data: ", md.Data)
+  } else {
+    fmt.Println("**This is Nil value.**")
+  }
 }
 
 // Yourdata is structure.
@@ -59,22 +63,13 @@ func (md *Yourdata) PrintData() {
 }
 
 func main() {
-  ob := [2]Data{}
-  ob[0] = new(Mydata)
-  ob[0].SetValue(map[string]string{
-          "name": "Sachiko",
-          "data": "55, 66, 77",
+  var ob *Mydata
+  ob.PrintData()
+  ob = &Mydata{}
+  ob.SetValue(map[string]string{
+          "name": "Jiro",
+          "data": "123 456 789",
   })
 
-  ob[1] = new(Yourdata)
-  ob[1].SetValue(map[string]string{
-          "name": "Mami",
-          "mail": "mami@mume.mo",
-          "age": "34",
-  })
-
-  for _, d := range ob {
-    d.PrintData()
-    fmt.Println()
-  }
+  ob.PrintData()
 }
