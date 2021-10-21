@@ -9,33 +9,52 @@ type General interface{}
 
 // GData is holding General value.
 type GData interface {
-  Set(nm string, g General)
+  Set(nm string, g General) GData
   Print()
 }
 
-// GDataImpl is structure.
-type GDataImpl struct {
+// Ndata is structure.
+type NData struct {
   Name string
-  Data General
+  Data int
 }
 
-// Set is GDataImpl method.
-func (gd *GDataImpl) Set(nm string, g General) {
-  gd.Name = nm
-  gd.Data = g
+// Set is NData method.
+func (nd *NData) Set(nm string, g General) GData {
+  nd.Name = nm
+  nd.Data = g.(int)
+  return nd
 }
 
-// Print is GDataImpl  method.
-func (gd *GDataImpl) Print() {
-  fmt.Printf("<<%s>> ", gd.Name)
-  fmt.Println(gd.Data)
+// Print is NData  method.
+func (nd *NData) Print() {
+  fmt.Printf("<<%s>> value: %d\n", nd.Name, nd.Data)
+}
+
+// SData is structure.
+type SData struct {
+  Name string
+  Data string
+}
+
+// Set is SData method.
+func (sd *SData) Set(nm string, g General) GData {
+  sd.Name = nm
+  sd.Data = g.(string)
+  return sd
+}
+
+// Print is SData method.
+func (sd *SData) Print() {
+  fmt.Printf("* %s [%s] *\n", sd.Name, sd.Data)
 }
 
 func main() {
-  var data = []GDataImpl{}
-  data = append(data, GDataImpl{"Taro", 123})
-  data = append(data, GDataImpl{"Hanako", "hello!"})
-  data = append(data, GDataImpl{"Sachiko", []int{123, 456,789}})
+  var data = []GData{}
+  data = append(data, new(NData).Set("Taro", 123))
+  data = append(data, new(SData).Set("Jiro", "hello!"))
+  data = append(data, new(NData).Set("Hanako", 98700))
+  data = append(data, new(SData).Set("Sachiko", "happy?"))
 
   for _, ob := range data {
     ob.Print()
