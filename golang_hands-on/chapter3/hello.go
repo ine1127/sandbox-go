@@ -58,8 +58,8 @@ func main() {
   var data = []GData{}
   data = append(data, new(NData).Set("Taro", 123))
   data = append(data, new(SData).Set("Jiro", "hello!"))
-  data = append(data, new(NData).Set("Hanako", 98700))
-  data = append(data, new(SData).Set("Sachiko", "happy?"))
+  data = append(data, new(NData).Set("Hanako", "98700"))
+  data = append(data, new(SData).Set("Sachiko", []string{"happy?"}))
 
   for _, ob := range data {
     ob.Print()
