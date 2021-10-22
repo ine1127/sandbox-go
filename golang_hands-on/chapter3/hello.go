@@ -2,6 +2,7 @@ package main
 
 import (
   "fmt"
+  "reflect"
 )
 
 // General is all type data.
@@ -22,7 +23,9 @@ type NData struct {
 // Set is NData method.
 func (nd *NData) Set(nm string, g General) GData {
   nd.Name = nm
-  nd.Data = g.(int)
+  if reflect.TypeOf(g).Kind() == reflect.Int {
+    nd.Data = g.(int)
+  }
   return nd
 }
 
@@ -40,7 +43,9 @@ type SData struct {
 // Set is SData method.
 func (sd *SData) Set(nm string, g General) GData {
   sd.Name = nm
-  sd.Data = g.(string)
+  if reflect.TypeOf(g).Kind() == reflect.String {
+    sd.Data = g.(string)
+  }
   return sd
 }
 
