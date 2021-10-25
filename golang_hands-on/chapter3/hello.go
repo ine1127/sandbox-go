@@ -17,14 +17,14 @@ type GData interface {
 // Ndata is structure.
 type NData struct {
   Name string
-  Data int
+  Data []int
 }
 
 // Set is NData method.
 func (nd *NData) Set(nm string, g General) GData {
   nd.Name = nm
-  if reflect.TypeOf(g).Kind() == reflect.Int {
-    nd.Data = g.(int)
+  if reflect.TypeOf(g) == reflect.SliceOf(reflect.TypeOf(0)) {
+    nd.Data = g.([]int)
   }
   return nd
 }
@@ -37,14 +37,14 @@ func (nd *NData) Print() {
 // SData is structure.
 type SData struct {
   Name string
-  Data string
+  Data []string
 }
 
 // Set is SData method.
 func (sd *SData) Set(nm string, g General) GData {
   sd.Name = nm
-  if reflect.TypeOf(g).Kind() == reflect.String {
-    sd.Data = g.(string)
+  if reflect.TypeOf(g) == reflect.SliceOf(reflect.TypeOf("")) {
+    sd.Data = g.([]string)
   }
   return sd
 }
