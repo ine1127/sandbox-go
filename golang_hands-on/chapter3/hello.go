@@ -56,10 +56,10 @@ func (sd *SData) Print() {
 
 func main() {
   var data = []GData{}
-  data = append(data, new(NData).Set("Taro", 123))
-  data = append(data, new(SData).Set("Jiro", "hello!"))
-  data = append(data, new(NData).Set("Hanako", "98700"))
-  data = append(data, new(SData).Set("Sachiko", []string{"happy?"}))
+  data = append(data, new(NData).Set("Taro", []int{1, 2, 3}))
+  data = append(data, new(SData).Set("Jiro", []string{"hello", "bye"}))
+  data = append(data, new(NData).Set("Hanako", 98700))
+  data = append(data, new(SData).Set("Sachiko", "happy?"))
 
   for _, ob := range data {
     ob.Print()
