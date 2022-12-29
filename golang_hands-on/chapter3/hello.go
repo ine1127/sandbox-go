@@ -2,24 +2,28 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
-func total(n int, c chan int) {
-	t := 0
+func total(c chan int) {
+	n := <-c
+	fmt.Println("n = ", n)
 
+	t := 0
 	for i := 1; i <= n; i++ {
 		t += i
 	}
-
-	c <- t
+	fmt.Println("total:", t)
 }
 
 func main() {
 	c := make(chan int)
-	go total(1000, c)
-	go total(100, c)
-	go total(10, c)
-
-	x, y, z := <-c, <-c, <-c
-	fmt.Println(x, y, z)
+	// この時点でchanに値は設定できない。
+	// chanは複数スレッド間で値をやり取りするためのものであるが、
+	// 送信側、受信側の双方で値の準備が整っていないといけないため。
+	// このため、Goroutineによるスレッドを実行した後でないとchanは使えない
+  // なので、このプログラムは失敗する
+	c <- 100
+	go total(c)
+	time.Sleep(100 * time.Millisecond)
 }
