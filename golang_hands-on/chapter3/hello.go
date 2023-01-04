@@ -2,24 +2,32 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
-func total(c chan int) {
-	n := <-c
-	fmt.Println("n = ", n)
+func prmsg(n int, s string) {
+	fmt.Println(s)
+	time.Sleep(time.Duration(n) * time.Millisecond)
+}
 
-	t := 0
-	for i := 1; i <= n; i++ {
-		t += i
+func first(n int, c chan string) {
+	const nm string = "first-"
+	for i := 0; i < 10; i++ {
+		s := nm + strconv.Itoa(i)
+		prmsg(n, s)
+		c <- s
 	}
-	fmt.Println("total:", t)
+}
+
+func second(n int, c chan string) {
+	for i := 0; i < 10; i++ {
+		prmsg(n, "second:["+<-c+"]")
+	}
 }
 
 func main() {
-	c := make(chan int)
-	// Goroutineを先に持ってくることでchanに値を設定することができる
-	go total(c)
-	c <- 100
-	time.Sleep(100 * time.Millisecond)
+	c := make(chan string)
+	go first(10, c)
+	second(10, c)
 }
